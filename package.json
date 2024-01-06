@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "discord.js": "^14.14.1"
+  },
+  "name": "battledudes-elo-bot",
+  "version": "1.0.0",
+  "description": "Elo Discord Bot for Battledudes.io",
+  "main": "battledudes.js",
+  "scripts": {
+    "test": "echo \"no tests needed\" && exit 0",
+    "start": "npm install && node battledudes.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Y0ursTruly/battledudes-elo-bot.git"
+  },
+  "keywords": [
+    "bot",
+    "elo",
+    "discord",
+    "discord.js",
+    "battledudes",
+    "battledudes.io"
+  ],
+  "author": "Yours Truly",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Y0ursTruly/battledudes-elo-bot/issues"
+  },
+  "homepage": "https://github.com/Y0ursTruly/battledudes-elo-bot#readme"
+}
