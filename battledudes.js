@@ -1,4 +1,4 @@
-//process.env.auth=JSON.stringify(require('./auth.json')) //comment this line in production(and exclude the intended file) and set key 'auth' to it in secrets(.env)
+process.env.auth=JSON.stringify(require('./auth.json')) //comment this line in production(and exclude the intended file) and set key 'auth' to it in secrets(.env)
 //server for uptimebot to ping begin
 require('http').createServer((req,res)=>{
   res.end("hi, this is a discord bot :D")
