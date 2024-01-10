@@ -1,8 +1,8 @@
 process.env.auth=JSON.stringify(require('./auth.json')) //comment this line in production(and exclude the intended file) and set key 'auth' to it in secrets(.env)
 //server for uptimebot to ping begin
-require('http').createServer((req,res)=>{
+/*require('http').createServer((req,res)=>{
   res.end("hi, this is a discord bot :D")
-}).listen(process.env.PORT||8080)
+}).listen(process.env.PORT||8080)*/
 //server for uptimebot to bing end
 
 //this code has 2 global variables, 'cache' and 'regions'
