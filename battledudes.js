@@ -178,7 +178,7 @@ var commands={
           if(amount<=0) break;
           index--; //index decrements to ensure 10 active players are found OR the list runs out
           if(Date.now()-listing[i].lastGame > 1000*60*60*24*7) continue; //if player inactive for over a week, ignore
-          regional+=`- ${10-(--amount)}) ELO: ${listing[i].elo} ........ PLAYER: <@${listing[i].id}>\n`;
+          regional+=`- ${10-(--amount)}) ELO: ${listing[i].elo} ........ PLAYER: \`${ (await bot.users.fetch(listing[i].id)).username }\`\n`;
         }
       }
       regional||="SO NOBODY IS ACTIVE IN THIS ENTIRE REGION!?!?";
