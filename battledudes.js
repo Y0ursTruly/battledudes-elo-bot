@@ -118,7 +118,8 @@ var commands={
         embeds:[embed("Battledues Ranked Match Instance",message)],
         components:[new ActionRowBuilder().addComponents(
           makeButton("Approve?", async function(click){
-            if(!cache.strict && (click.user.id===PaID||click.user.id===PbID)){
+            if(click.user.id===PaID||click.user.id===PbID){
+              if(cache.strict) return await click.reply({content:"Strict mode is on, participants of a match cannot approve the score themselves",ephemeral:true})
               if(click.user.id===PaID){
                 if(PaVoted) await click.reply({content:"Your approval was already recorded :/",ephemeral:true});
                 else{
