@@ -99,7 +99,7 @@ var commands={
 
       let message=`A match between <@${PaID}> vs <@${PbID}> in the region of ${regionNames[region]} occured\n`
       message+=`Apparently with the scores of <@${PaID}> with \`${scoreA}\` and <@${PbID}> with \`${scoreB}\`\n`
-      message+=`This item is awaiting moderator approval...`
+      message+=`This item is awaiting either moderator approval or agreement from both parties mentioned`
 
       await interaction.reply({
         embeds:[embed("Battledues Ranked Match Instance",message)],
@@ -148,7 +148,7 @@ var commands={
         )]
       })
     },
-    description: "Upload the score of exactly ONE match at a time and await moderator approval",
+    description: "Upload the score of exactly ONE match at a time and await either moderator approval or the agreement of both parties in the match",
     options: [
       {
         type:slashOptions.String,required:true,name:"region",  description:"the region the match was played in",
