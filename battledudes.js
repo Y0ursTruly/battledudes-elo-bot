@@ -95,7 +95,7 @@ var commands={
     },
     description: "Allow ONLY moderators to approve scores or not",
     options: [
-      {type:slashOptions.Boolean,required:true,name:"state",  description:"true only allows moderators to approve while false allows score participants as well"}
+      {type:slashOptions.Boolean,required:true,name:"state",  description:"only mods approve or no"}
     ],
     name: "strict"
   },
@@ -162,7 +162,7 @@ var commands={
         )]
       })
     },
-    description: "Upload the score of exactly ONE match at a time and await either moderator approval or the agreement of both parties in the match",
+    description: "Upload the score of exactly ONE match at a time and await approval",
     options: [
       {
         type:slashOptions.String,required:true,name:"region",  description:"the region the match was played in",
