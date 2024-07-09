@@ -91,7 +91,7 @@ function embed(title,description){
 
 
 //elo
-const c=400, K=64
+const c=400, K=64, maxGameScore=3;
 function elo(Pa,Pb,Sa,Sb){
   //Pa.elo: rating of a
   //Pb.elo: rating of b
@@ -108,24 +108,8 @@ function gameELO(region,PaID,PbID,Sa,Sb){
   let playerA=cache[region][PaID], playerB=cache[region][PbID];
   regions[region]=takeAway(regions[region],playerA)
   regions[region]=takeAway(regions[region],playerB)
-  //option 1: lower player gains more
-  if(Sa<Sb){
-    for(let i=0;i<Sa;i++) elo(playerA,playerB,1,0);
-    for(let i=0;i<Sb;i++) elo(playerA,playerB,0,1);
-  }
-  else{
-    for(let i=0;i<Sb;i++) elo(playerB,playerA,1,0);
-    for(let i=0;i<Sa;i++) elo(playerB,playerA,0,1);
-  }
-  /*//option 2: higher player loses less
-  if(Sa<Sb){
-    for(let i=0;i<Sb;i++) elo(playerA,playerB,0,1);
-    for(let i=0;i<Sa;i++) elo(playerA,playerB,1,0);
-  }
-  else{
-    for(let i=0;i<Sa;i++) elo(playerB,playerA,0,1);
-    for(let i=0;i<Sb;i++) elo(playerB,playerA,1,0);
-  }*/
+  elo(playerA, playerB, Sa/maxGameScore, Sb/maxGameScore)
+  
   playerA.elo=Math.round(playerA.elo)
   playerB.elo=Math.round(playerB.elo)
   regions[region]=addTo(regions[region],playerA)
