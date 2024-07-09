@@ -1,11 +1,11 @@
 //handling an error that's not my fault begin
 process.on('uncaughtException',function(error){
-  if(error.toString().includes('429'))
-    process.kill(1,'SIGKILL'); //change IP attempt
+  error; //error caught idc if u have some 0 day to get discord.js to throw an uncaught exception
+  //also, the other reason I had actual code in here, this used to be in replit and some spammer's discord bot could've been sharing my IP >:(
 })
 //handling an error that's not my fault end
 
-const admin=[1<<3].map(a=>a.toString()), mod=[1<<4,1<<5,1<<13,1<<28,1<<40].map(a=>a.toString())
+const admin=[1<<3].map(a=>a.toString()), mod=[1<<4,1<<5,1<<13,1<<28,1<<40].map(a=>a.toString()) //unused currently
 //src https://discord.com/developers/docs/topics/permissions#permissions-bitwise-permission-flags
 const r=require, https=r('https'), {URL}=r('url'), {setWhole,getWhole}=r('./replDatabase.js'), auth=JSON.parse(process.env.auth)
 const discord=r('discord.js'), {SlashCommandBuilder,ActionRowBuilder,ButtonBuilder,ButtonStyle}=discord, crypto=r('node:crypto')
@@ -38,7 +38,7 @@ async function bufferChunk(stream,maxLength=Infinity){
     stream.on('error', reject)
   })
 }
-async function imageURL(data){
+async function imageURL(data){ //unused currently
   return new Promise(resolve=>{
     let url=new URL(auth.imageSite)
     let options={hostname:url.hostname, port:443, path:'/', method:"POST", headers:auth.postImage}
@@ -123,7 +123,7 @@ module.exports={discord,gameELO,bufferChunk,imageURL,makeButton,buttons,embed,ba
 //setTimeout(_=>{global.cache={na:{},eu:{},as:{},errors:[]}},2e3) //for production, comment out this line and uncomment the code below it
 (async function(){ //database handling
   await new Promise(r=>setTimeout(r,2e2))
-  global.cache=await getWhole({na:{},eu:{},as:{},errors:[]})
+  global.cache=await getWhole({na:{},eu:{},as:{},errors:[],strict:true})
   setInterval(function(){
     if(backup.needed){
       backup.needed=false;

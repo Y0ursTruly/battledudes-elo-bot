@@ -86,6 +86,19 @@ var commands={
     ],
     name: "info"
   },
+  strict:{
+    async handler(interaction){
+      if(!allowed[interaction.user.id]) return await interaction.reply({content:"MUST be a moderator to use this command",ephemeral:true});
+      cache.strict=interaction.options.getBoolean('state')
+      backup.needed=true
+      await interaction.reply({content:"strict mode is now "+cache.strict?'on':'off',ephemeral:true})
+    },
+    description: "Allow ONLY moderators to approve scores or not",
+    options: [
+      {type:slashOptions.Boolean,required:true,name:"state",  description:"true only allows moderators to approve while false allows score participants as well"}
+    ],
+    name: "strict"
+  },
   score:{
     async handler(interaction){
       let {options}=interaction, region=options.getString('region'), PaVoted=false, PbVoted=false
@@ -105,7 +118,7 @@ var commands={
         embeds:[embed("Battledues Ranked Match Instance",message)],
         components:[new ActionRowBuilder().addComponents(
           makeButton("Approve?", async function(click){
-            if(click.user.id===PaID||click.user.id===PbID){
+            if(!cache.strict && (click.user.id===PaID||click.user.id===PbID)){
               if(click.user.id===PaID){
                 if(PaVoted) await click.reply({content:"Your approval was already recorded :/",ephemeral:true});
                 else{
