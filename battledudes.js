@@ -91,7 +91,7 @@ var commands={
       if(!allowed[interaction.user.id]) return await interaction.reply({content:"MUST be a moderator to use this command",ephemeral:true});
       cache.strict=interaction.options.getBoolean('state')
       backup.needed=true
-      await interaction.reply({content:"strict mode is now "+cache.strict?'on':'off',ephemeral:true})
+      await interaction.reply({content:"strict mode is now "+(cache.strict?'on':'off'),ephemeral:true})
     },
     description: "Allow ONLY moderators to approve scores or not",
     options: [
