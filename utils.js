@@ -91,14 +91,18 @@ function embed(title,description){
 
 
 //elo
-const c=400, K=64, maxGameScore=3;
 function elo(Pa,Pb,Sa,Sb){
+  //the elo update is to make scores 1 or 0 but change k factor based on how close the scores are
   //Pa.elo: rating of a
   //Pb.elo: rating of b
   //Sa: outcome of a
   //Sb: outcome of b
   //Ea: expected outcome of a
   //Eb: expected outcome of b
+  const c=400, diff=Math.abs(Sa-Sb), K=4<<diff;
+  if(diff===0) (Sa=.5, Sb=.5);
+  else if(Sa>Sb) (Sa=1, Sb=0);
+  else (Sa=0, Sb=1);
   let Qa=10**(Pa.elo/c), Qb=10**(Pb.elo/c);
   let Ea=Qa/(Qa+Qb), Eb=Qb/(Qb+Qa);
   let Ra=Pa.elo+K*(Sa-Ea), Rb=Pb.elo+K*(Sb-Eb);
@@ -108,7 +112,7 @@ function gameELO(region,PaID,PbID,Sa,Sb){
   let playerA=cache[region][PaID], playerB=cache[region][PbID];
   regions[region]=takeAway(regions[region],playerA)
   regions[region]=takeAway(regions[region],playerB)
-  elo(playerA, playerB, Sa/maxGameScore, Sb/maxGameScore)
+  elo(playerA, playerB, Sa, Sb)
   
   playerA.elo=Math.round(playerA.elo)
   playerB.elo=Math.round(playerB.elo)
