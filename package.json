@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "discord.js": "^14.15.3"
+    "discord.js": "^14.18.0"
   },
   "name": "battledudes-elo-bot",
   "version": "1.0.0",
